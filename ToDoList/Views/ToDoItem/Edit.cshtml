@@ -1,0 +1,120 @@
+﻿@model global::Task.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body p-4">
+
+        <h2 class="mb-4">Edit Task</h2>
+
+        <form asp-controller="TodoItem"
+              asp-action="Edit"
+              asp-route-id="@Model.Id"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input asp-for="Id" type="hidden" />
+
+            <div asp-validation-summary="All"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">
+                    Title
+                </label>
+
+                <input asp-for="Title"
+                       class="form-control"
+                       maxlength="200"
+                       required />
+
+                <span asp-validation-for="Title"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">
+                    Description
+                </label>
+
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="4"
+                          maxlength="4000"></textarea>
+
+                <span asp-validation-for="Description"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DeadLine" class="form-label">
+                    Deadline
+                </label>
+
+                <input asp-for="DeadLine"
+                       type="datetime-local"
+                       asp-format="{0:yyyy-MM-ddTHH:mm}"
+                       class="form-control"
+                       required />
+
+                <span asp-validation-for="DeadLine"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Current File</label>
+
+                @if (!string.IsNullOrWhiteSpace(Model.StoredFileName))
+                {
+                    <div class="alert alert-info">
+                        <span>@Model.FileName</span>
+
+                        <a asp-controller="TodoItem"
+                           asp-action="Download"
+                           asp-route-id="@Model.Id"
+                           class="ms-2">
+                            Download
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No file attached.</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label">
+                    Upload New File
+                </label>
+
+                <input type="file"
+                       id="file"
+                       name="file"
+                       class="form-control" />
+
+                <div class="form-text">
+                    Choosing a new file will replace the old one. Leaving it blank will keep the old file. Maximum size is 50 MB.
+                </div>
+
+                @Html.ValidationMessage(
+                    "file",
+                    "",
+                    new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Update
+            </button>
+
+            <a asp-controller="TodoItem"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+    </div>
+</div>

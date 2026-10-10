@@ -1,0 +1,92 @@
+﻿@model global::Task.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Create Task";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body p-4">
+
+        <h2 class="mb-4">Create Task</h2>
+
+        <form asp-controller="TodoItem"
+              asp-action="Create"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div asp-validation-summary="All"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">
+                    Title
+                </label>
+
+                <input asp-for="Title"
+                       class="form-control"
+                       maxlength="200"
+                       required />
+
+                <span asp-validation-for="Title"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">
+                    Description
+                </label>
+
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="4"
+                          maxlength="4000"></textarea>
+
+                <span asp-validation-for="Description"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DeadLine" class="form-label">
+                    Deadline
+                </label>
+
+                <input asp-for="DeadLine"
+                       type="datetime-local"
+                       asp-format="{0:yyyy-MM-ddTHH:mm}"
+                       class="form-control"
+                       required />
+
+                <span asp-validation-for="DeadLine"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label">
+                    File
+                </label>
+
+                <input type="file"
+                       id="file"
+                       name="file"
+                       class="form-control" />
+
+                <div class="form-text">
+                    Any file type, maximum 50 MB. Attachment is optional.
+                </div>
+
+                @Html.ValidationMessage("file", "",new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save
+            </button>
+
+            <a asp-controller="TodoItem"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+    </div>
+</div>

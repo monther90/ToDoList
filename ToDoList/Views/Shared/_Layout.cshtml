@@ -1,0 +1,106 @@
+﻿﻿@{
+string currentController =
+    ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - ToDoListApp</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light app-navbar">
+            <div class="container">
+
+                <a class="navbar-brand app-brand"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <span class="brand-icon" aria-hidden="true">✓</span>
+                    ToDoListApp
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse"
+                     id="mainNavbar">
+
+                    <ul class="navbar-nav ms-auto align-items-sm-center">
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Home" ? "active" : "")"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "TodoItem" ? "active" : "")"
+                               asp-controller="TodoItem"
+                               asp-action="Index">
+                                Tasks
+                            </a>
+                        </li>
+
+                        <li class="nav-item ms-sm-3">
+                            <a class="btn btn-primary btn-sm"
+                               asp-controller="TodoItem"
+                               asp-action="Create">
+                                + New Task
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container app-container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <div class="container">
+            <span>© @DateTime.Now.Year ToDoListApp</span>
+            <span>One task at a time.</span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

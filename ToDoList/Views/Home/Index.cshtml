@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+        <div class="col-lg-9 col-xl-8">
+
+            <div class="card border-0 shadow-lg p-5 rounded-4 text-center bg-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+
+                <!-- خط زخرفي علوي أنيق -->
+                <div class="position-absolute top-0 start-0 w-100 bg-primary" style="height: 4px;"></div>
+
+                <div class="card-body px-0 py-3">
+
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-3" style="letter-spacing: 1.5px; font-size: 0.8rem;">
+                        YOUR DAY, ORGANIZED
+                    </span>
+
+                    <h1 class="display-4 fw-bold text-dark mb-3 tracking-tight">
+                        Welcome to <span class="text-primary">ToDoListApp</span>
+                    </h1>
+
+                    <p class="lead text-muted mb-4 mx-auto" style="max-width: 600px; font-size: 1.1rem; line-height: 1.6;">
+                        Organize your tasks, manage deadlines, and keep your important files together. Make room for a more focused day.
+                    </p>
+
+                    <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                        <a asp-controller="TodoItem"
+                           asp-action="Index"
+                           class="btn btn-primary btn-lg px-4 py-3 shadow-sm d-inline-flex align-items-center"
+                           style="border-radius: 10px; transition: transform 0.2s;">
+                            View Your Tasks
+                            <span class="ms-2" aria-hidden="true">→</span>
+                        </a>
+
+                        <a asp-controller="TodoItem"
+                           asp-action="Create"
+                           class="btn btn-light btn-lg px-4 py-3 border shadow-sm d-inline-flex align-items-center text-dark"
+                           style="border-radius: 10px; transition: transform 0.2s;">
+                            + Create a Task
+                        </a>
+                    </div>
+
+                    <hr class="w-25 mx-auto my-4 text-muted opacity-25">
+
+                    <p class="text-secondary small fst-italic mb-0">
+                        "A clear plan starts with one small task."
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
